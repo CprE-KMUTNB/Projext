@@ -1,17 +1,11 @@
 import './App.css';
-
-const Title =()=><h1>test react</h1>
-const Item =()=><p>Test Github</p>
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="app-navbarBG">
-      <ul>
-          <navbarBG></navbarBG>
-          <Title/>
-          <Item/>
-      </ul>
-    </div>
+    <>
+      <Navbar/>
+    </>
   );
 }
 
