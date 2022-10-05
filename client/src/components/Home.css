@@ -1,0 +1,7 @@
+.bg{
+    max-width: auto;
+    max-height: auto;
+    height: 100vh;
+    background:#192026 ;
+    overflow: hidden;
+}

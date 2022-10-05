@@ -1,0 +1,15 @@
+.bg{
+    max-width: 100vw;
+    height: 100vh;
+    background:#192026 ;
+    overflow:hidden;
+}
+.box2{
+    display: grid;
+    justify-content: center;
+    background-color: aqua;
+}
+.title {
+    display: flex;
+    justify-content: center;
+}
