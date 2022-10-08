@@ -1,6 +1,7 @@
 //ติดต่อฐานข้อมูล //ดำเนินการกับDB
 
 const slugify = require("slugify")
+const tests = require("../model/tests")
 const DATA = require("../model/tests")
 //สร้างข้อมูล
 exports.create=(req,res)=>{
@@ -25,8 +26,23 @@ exports.create=(req,res)=>{
     //บันทึกข้อมูล //,CONFIRM_PASSWORD,NAME,slug
     DATA.create({ID,PASSWORD,CONFIRM_PASSWORD,NAME,slug},(err,Data)=>{
         if(err){
-            res.status(400).json({error:err})
+            res.status(400).json({error:"have a same id"})
         }
         res.json(Data)
+    })
+}
+
+//ดึงข้อมูล
+exports.getAlldata=(req,res)=>{
+    tests.find({}).exec((err,UserDatas)=>{
+        res.json(UserDatas)
+    })
+}
+
+//ดึงข้อมูลที่สนใจอ้างอิงจาก slug
+exports.mydata=(req,res)=>{
+    const {slug} = req.params
+    tests.findOne({slug}).exec((err,UserData)=>{
+        res.json(UserData)
     })
 }

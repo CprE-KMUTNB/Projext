@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const LoginData = mongoose.Schema({
+const registerData = mongoose.Schema({
     ID:{
         type:String,
         require:true,
@@ -23,4 +23,4 @@ const LoginData = mongoose.Schema({
     }
 },{timestamps:true})
 
-module.exports = mongoose.model("loginTest",LoginData)
+module.exports = mongoose.model("registerTest",registerData)

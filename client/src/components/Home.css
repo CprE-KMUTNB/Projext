@@ -1,7 +1,12 @@
-.bg{
+.bg_Home{
     max-width: auto;
     max-height: auto;
     height: 100vh;
     background:#192026 ;
     overflow: hidden;
+}
+.bg_Home h1{
+    display: grid;
+    justify-content: center;
+    color: rgb(255, 255, 255);
 }

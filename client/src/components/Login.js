@@ -1,60 +1,83 @@
 import React from 'react';
-import './Login.css';
+import './login.css';
+import './login_screen.css' ;
 import Navbar from './Navbar';
 import {useState} from "react";
+import axios from 'axios';
+import Swal from "sweetalert2"
+import { authenticate } from '../services/authorize';
+import { Link,useNavigate } from 'react-router-dom';
 
-import axios from "axios";
 
-function Login() {
-  const [state,setState] = useState({
-    ID:"",
-    PASSWORD:"",
-    CONFIRM_PASSWORD:"",
-    NAME:""
-  })
-  const {ID,PASSWORD,CONFIRM_PASSWORD,NAME} = state
-  //กำหนดค่าstate
-  const inputValue=name=>event=>{
-    //console.log(name,"=",event.target.value)
-    setState({...state,[name]:event.target.value})
-  }
-  const submitForm=(e)=>{
-    e.preventDefault();
-    console.table({ID,PASSWORD,CONFIRM_PASSWORD,NAME})
-    console.log("API URL = ",process.env.REACT_APP_API)
-    axios
-    .post(String(process.env.REACT_APP_API)+'/login',{ID,PASSWORD,CONFIRM_PASSWORD,NAME})
-    .then(response=>{alert("complete")})
-    .catch(err=>{alert(err.response.data.error)})
-  }
+function Login(props) {
 
-  return (  
-    <>
-      <Navbar/>
-      <div className='bg'>
-        <div className='box2'>
-          <div className='title'>Register</div>
-          <div className='inputID'>
-            <label>Enter your ID</label>
-            <input type="text" value={ID} onChange={inputValue("ID")}></input>
-          </div>
-          <div className='inputPASSWORD'>
-            <label>Enter your PASSWORD</label>
-            <input type="text" value={PASSWORD} onChange={inputValue("PASSWORD")}></input>
-          </div>
-          <div className='inputCONFIRM_PASSWORD'>
-            <label>CONFIRM your PASSWORD</label>
-            <input type="text" value={CONFIRM_PASSWORD} onChange={inputValue("CONFIRM_PASSWORD")}></input>
-          </div>
-          <div className='inputNAME'>
-            <label>Enter your NAME</label>
-            <input type="text" value={NAME} onChange={inputValue("NAME")}></input>
-          </div>
-        </div>
-        <button onClick={submitForm}>Submit</button>
-      </div>
-    </>
-  )
+    const [state,setState] = useState({
+        ID:"",
+        password:""
+    })
+    const {ID,password} = state
+    //refresh
+    const refreshPage =()=>{
+        window.location.reload();
+    }
+
+    //กำหนดค่าstate
+    const inputValue=name=>event=>{
+        //console.log(name,"=",event.target.value)
+        setState({...state,[name]:event.target.value})
+    }
+    //ปุ่มsubmit
+    const navigate = useNavigate();
+    const submitForm=(e)=>{
+        e.preventDefault();
+        console.table({ID,password})
+        axios
+        .post(String(process.env.REACT_APP_API)+'/login',{ID,password})
+        //login complete
+        .then(response=>{
+            console.log(response)
+            Swal.fire(
+                'Complete',
+                'Your ID can login.',
+                'success')
+            setState({...state,ID:"",password:""})
+            navigate('/')
+            authenticate(response)
+            refreshPage()
+        })
+        .catch(err=>{ Swal.fire({
+            icon: 'error',
+            title: 'Failed',
+            text: err.response.data.error,
+            footer: '<a href="">Why do I have this issue?</a>'
+          })
+        })
+      }
+
+    return (
+        <>
+            <Navbar/>
+            <div className='bg_login'>
+                <div className='box_login'>
+                    <div className='title_login'>Login</div>
+                    <div className='ID'>
+                        <label>ID</label>
+                        <input type="text" value={ID} onChange={inputValue("ID")}></input>
+                    </div>
+                    <div className='PASSWORD'>
+                        <label>password</label>
+                        <input type="password" value={password} onChange={inputValue("password")}></input>
+                    </div>
+                    <div className='box_button'>
+                        <button onClick={submitForm} className="LoginButton">Login</button>
+                        <button className="RegisterButton">
+                            <Link to="/register"> Register</Link>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default Login;

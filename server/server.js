@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 
 const testRoute = require('./route/test')
+const authRoute = require('./route/auth')
 
 const app = express()
 //conect
@@ -23,6 +24,7 @@ app.use(morgan("dev"))
 
 //route
 app.use('/api',testRoute)
+app.use('/api',authRoute)
 
 const port = process.env.PORT || 8080
 app.listen(port,()=>console.log(port))
