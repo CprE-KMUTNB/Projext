@@ -41,7 +41,7 @@ function Navbar() {
             <Link to = "/">
               <h2>Home</h2>
             </Link>
-            <Link to = "/myfile">
+            <Link to = "/">
               <h2>Myfile</h2>
             </Link>
             <a href='/'>

@@ -23,4 +23,4 @@ const registerData = mongoose.Schema({
     }
 },{timestamps:true})
 
-module.exports = mongoose.model("registerTest",registerData)
+module.exports = mongoose.model("registerDATA",registerData)

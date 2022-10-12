@@ -3,6 +3,7 @@
 const slugify = require("slugify")
 const tests = require("../model/tests")
 const DATA = require("../model/tests")
+const space = require("../model/space")
 //สร้างข้อมูล
 exports.create=(req,res)=>{
     const {ID,PASSWORD,CONFIRM_PASSWORD,NAME} = req.body
@@ -22,14 +23,15 @@ exports.create=(req,res)=>{
             return res.status(400).json({error:"pls check your password and confirm password"})
             break;
     }
-
     //บันทึกข้อมูล //,CONFIRM_PASSWORD,NAME,slug
     DATA.create({ID,PASSWORD,CONFIRM_PASSWORD,NAME,slug},(err,Data)=>{
         if(err){
             res.status(400).json({error:"have a same id"})
         }
-        res.json(Data)
-    })
+        space.create({ID},(err,SP)=>{
+            res.json({Data,SP})
+        })
+    }) 
 }
 
 //ดึงข้อมูล
