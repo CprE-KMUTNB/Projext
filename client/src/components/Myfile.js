@@ -39,7 +39,7 @@ function Myfile() {
     responseType: 'blob'})
     .then((res) => {
       console.log({res_data:res.data})
-      const fileName = NAME +"."+ String((res.data['type'].split("/"))[res.data['type'].split("/").length-1])
+      const fileName = NAME + type
       console.log(res.data)
       fileDownload(res.data,fileName)
     })

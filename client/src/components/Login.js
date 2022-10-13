@@ -36,7 +36,7 @@ function Login(props) {
         .then(response=>{
             Swal.fire(
                 'Complete',
-                'Your ID can login.',
+                'Login success.',
                 'success')
             setState({...state,ID:"",password:""})
             navigate('/')
