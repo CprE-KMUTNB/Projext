@@ -30,12 +30,10 @@ function Login(props) {
     const navigate = useNavigate();
     const submitForm=(e)=>{
         e.preventDefault();
-        console.table({ID,password})
         axios
         .post(String(process.env.REACT_APP_API)+'/login',{ID,password})
         //login complete
         .then(response=>{
-            console.log(response)
             Swal.fire(
                 'Complete',
                 'Your ID can login.',

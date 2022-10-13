@@ -4,12 +4,21 @@ const userSpace = mongoose.Schema({
     ID:{
         type:String,
         require:true,
-        unique:true
+        unique:false
     },
-    UserData : {
+    UserDataName : {
+        type:String,
+        default : ""
+    },
+    UserDataPath : {
+        type:String,
+        default : ""
+    },
+    Type : {
         type:String,
         default : ""
     }
+    
 
 },{timestamps:true})
 

@@ -35,9 +35,11 @@ exports.create=(req,res)=>{
 }
 
 //ดึงข้อมูล
-exports.getAlldata=(req,res)=>{
-    tests.find({}).exec((err,UserDatas)=>{
-        res.json(UserDatas)
+exports.getAlldata = (req,res) => {
+    const ID = req.headers.authorization;
+    space.find({ID})
+    .then(Alldata => {
+        return res.json(Alldata)
     })
 }
 
@@ -46,5 +48,17 @@ exports.mydata=(req,res)=>{
     const {slug} = req.params
     tests.findOne({slug}).exec((err,UserData)=>{
         res.json(UserData)
+    })
+}
+
+exports.createspace=(req,res)=>{
+    const {ID,UserDataName,UserDataPath,Type} = req.body
+    space.create({ID,UserDataName,UserDataPath,Type},(err,newspace)=>{
+        if(err){
+            res.status(400).json(err)
+        }
+        else{
+            return res.json(newspace)
+        }
     })
 }
