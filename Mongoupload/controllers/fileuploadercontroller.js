@@ -3,12 +3,13 @@ const SingleFile = require('../models/singlefile');
 const MultipleFile = require('../models/multiplefile');
 
 const singleFileUpload = async (req, res, next) => {
+    
     try{
         const file = new SingleFile({
-            fileName: req.file.originalname,
-            filePath: req.file.path,
-            fileType: req.file.mimetype,
-            fileSize: fileSizeFormatter(req.file.size, 2) // 0.00
+            ID:'test1',
+            UserDataName: req.file.originalname.split('.')[0],
+            UserDataPath: req.file.path.split('.')[0],
+            Type: '.'+req.file.originalname.split('.')[1],
         });
         await file.save();
         res.status(201).send('File Uploaded Successfully');
@@ -66,10 +67,20 @@ const fileSizeFormatter = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + ' ' + sizes[index];
 
 }
+const deletefile = async (req, res, next) => {
+    try{
+        await SingleFile.findOneAndDelete({name :'Exam_Digital_1'});
+        res.status(201).send(console.log('Deleted'));
+    }catch(error) {
+        res.status(400).send(error.message);
+    }
+}
+
 
 module.exports = {
     singleFileUpload,
     multipleFileUpload,
     getallSingleFiles,
-    getallMultipleFiles
+    getallMultipleFiles,
+    deletefile
 }

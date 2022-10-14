@@ -1,6 +1,6 @@
 import React from 'react';
-import './login.css';
-import './login_screen.css' ;
+import './Login.css';
+import './Login_screen.css' ;
 import Navbar from './Navbar';
 import {useState} from "react";
 import axios from 'axios';

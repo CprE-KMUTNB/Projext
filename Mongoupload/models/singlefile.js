@@ -3,22 +3,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const singleFileSchema = new Schema({
-    fileName: {
+    ID:{
+        type:String,
+        required: true
+    },
+    UserDataName: {
         type: String,
         required: true
     },
-    filePath: {
+    UserDataPath: {
         type: String,
         required: true
     },
-    fileType: {
+    Type: {
         type: String,
         required: true
     },
-    fileSize: {
-        type: String,
-        required: true
-    }
 }, {timestamps: true});
 
 module.exports = mongoose.model('SingleFile', singleFileSchema);

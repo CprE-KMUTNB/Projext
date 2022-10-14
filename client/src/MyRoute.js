@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import App from "./App"
 import Register from "./components/register"
-import Login from "./components/login"
+import Login from "./components/Login"
 
 
 const MyRoute=()=>{
