@@ -1,32 +1,10 @@
-//import React,{useState} from 'react';
 import './Navbar.css';
 import './Navbar_screen.css' ;
 import { AiOutlineUser } from "react-icons/ai";
 import { Link } from 'react-router-dom';
-import axios from "axios";
-import {useState,useEffect} from "react";
 import { getNAME,logout } from "../services/authorize"
 
 function Navbar() {
-
-  //const [click, setClick] = useState(false);
-  //const handleClick = () => setClick(!click);
-  //console.log(click);
-  const [datas,setdatas] = useState([])
-
-  const fetchData=()=>{
-    axios
-    .get(String(process.env.REACT_APP_API)+'/datauser')
-    .then(response=>{
-      setdatas(response.data)
-    })
-    .catch(err=>alert(err));
-  }
-  useEffect(()=>{
-    fetchData()
-  },[])
-  const Slug = datas.map(data=>(data.slug)) //ดึงเฉพาะslugออกมาจากข้อมูลเเต่ละก้อน
-  const LiksMyFile  = '/datauser/'+String(Slug[1])//เอาIDของuserที่loginมาใส่แทนslug[]
 
   const UserName = "user : "+String(getNAME())
 
@@ -44,9 +22,9 @@ function Navbar() {
             <Link to = "/myfile">
               <h2>Myfile</h2>
             </Link>
-            <a href='/'>
+            <Link to = "/info">
               <h2>Info</h2>
-            </a>
+            </Link>
           </div>
           {!getNAME() && (
             <div className='userbutton'>

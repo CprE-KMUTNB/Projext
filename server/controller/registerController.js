@@ -3,6 +3,7 @@
 const slugify = require("slugify")
 const tests = require("../model/tests")
 const DATA = require("../model/tests")
+const space = require("../model/space")
 //สร้างข้อมูล
 exports.create=(req,res)=>{
     const {ID,PASSWORD,CONFIRM_PASSWORD,NAME} = req.body
@@ -22,20 +23,23 @@ exports.create=(req,res)=>{
             return res.status(400).json({error:"pls check your password and confirm password"})
             break;
     }
-
     //บันทึกข้อมูล //,CONFIRM_PASSWORD,NAME,slug
     DATA.create({ID,PASSWORD,CONFIRM_PASSWORD,NAME,slug},(err,Data)=>{
         if(err){
             res.status(400).json({error:"have a same id"})
         }
-        res.json(Data)
-    })
+        space.create({ID},(err,SP)=>{
+            res.json({Data,SP})
+        })
+    }) 
 }
 
 //ดึงข้อมูล
-exports.getAlldata=(req,res)=>{
-    tests.find({}).exec((err,UserDatas)=>{
-        res.json(UserDatas)
+exports.getAlldata = (req,res) => {
+    const ID = req.headers.authorization;
+    space.find({ID})
+    .then(Alldata => {
+        return res.json(Alldata)
     })
 }
 
@@ -44,5 +48,17 @@ exports.mydata=(req,res)=>{
     const {slug} = req.params
     tests.findOne({slug}).exec((err,UserData)=>{
         res.json(UserData)
+    })
+}
+
+exports.createspace=(req,res)=>{
+    const {ID,UserDataName,UserDataPath,Type} = req.body
+    space.create({ID,UserDataName,UserDataPath,Type},(err,newspace)=>{
+        if(err){
+            res.status(400).json(err)
+        }
+        else{
+            return res.json(newspace)
+        }
     })
 }
