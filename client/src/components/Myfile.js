@@ -29,6 +29,9 @@ function Myfile() {
   },[])
 
   const downloadClick =(NAME,path,type)=>{
+    if (type == "File folder"){
+      type = ".zip"
+    }
     handleDownload(NAME,path,type)
   }
 

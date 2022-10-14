@@ -22,9 +22,9 @@ function Navbar() {
             <Link to = "/myfile">
               <h2>Myfile</h2>
             </Link>
-            <a href='/'>
+            <Link to = "/info">
               <h2>Info</h2>
-            </a>
+            </Link>
           </div>
           {!getNAME() && (
             <div className='userbutton'>

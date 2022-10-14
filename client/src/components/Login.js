@@ -23,13 +23,15 @@ function Login(props) {
 
     //กำหนดค่าstate
     const inputValue=name=>event=>{
-        //console.log(name,"=",event.target.value)
+        console.log(name,"=",event.target.value)
         setState({...state,[name]:event.target.value})
     }
     //ปุ่มsubmit
     const navigate = useNavigate();
+
     const submitForm=(e)=>{
         e.preventDefault();
+        console.table({ID,password})
         axios
         .post(String(process.env.REACT_APP_API)+'/login',{ID,password})
         //login complete
