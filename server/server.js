@@ -29,3 +29,17 @@ app.use('/api',authRoute)
 
 const port = process.env.PORT || 8080
 app.listen(port,()=>console.log(port))
+
+'use strict';
+const path = require('path');
+const bodyParser = require('body-parser');
+const fileRoutes = require('./route/file-upload-routes');
+require("dotenv").config()
+app.use(cors());
+
+
+app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'assets')));
+
+app.use('/api', fileRoutes.routes);
+

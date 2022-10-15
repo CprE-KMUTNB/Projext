@@ -23,7 +23,7 @@ function Login(props) {
 
     //กำหนดค่าstate
     const inputValue=name=>event=>{
-        console.log(name,"=",event.target.value)
+        /*console.log(name,"=",event.target.value)*/
         setState({...state,[name]:event.target.value})
     }
     //ปุ่มsubmit
