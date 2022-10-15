@@ -3,7 +3,7 @@ import App from "./App"
 import Register from "./components/register"
 import Login from "./components/Login"
 import Myfile from "./components/Myfile"
-import Info from "./components/Info"
+import Upload from "./components/upload"
 
 
 const MyRoute=()=>{
@@ -14,7 +14,7 @@ const MyRoute=()=>{
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/myfile" element={<Myfile/>}></Route>
-                <Route path="/info" element={<Info/>}></Route>
+                <Route path="/upload" element={<Upload/>}></Route>
             </Routes>
         </BrowserRouter>
     );

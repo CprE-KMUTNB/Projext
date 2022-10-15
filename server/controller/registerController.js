@@ -28,9 +28,7 @@ exports.create=(req,res)=>{
         if(err){
             res.status(400).json({error:"have a same id"})
         }
-        space.create({ID},(err,SP)=>{
-            res.json({Data,SP})
-        })
+        res.json(Data)
     }) 
 }
 

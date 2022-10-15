@@ -10,6 +10,7 @@ import { TbDownload } from "react-icons/tb";
 
 function Myfile() {
 
+
   const url = String(process.env.REACT_APP_API) + "/getalldata"
 
   const ID = String(getNAME())
@@ -29,7 +30,7 @@ function Myfile() {
   },[])
 
   const downloadClick =(NAME,path,type)=>{
-    if (type == "File folder"){
+    if (type === "File folder"){
       type = ".zip"
     }
     handleDownload(NAME,path,type)
@@ -53,51 +54,53 @@ function Myfile() {
         <Navbar/>
         <div className='bg_Myfile'>
           <div className='box_Myfile'>
-            <div className='logo_Myfile'>
-              <h1>Projext</h1>
-            </div>
-            <div className='line'></div>
-            <div className='Info'>
-              <div className='bg_Info'>
-                <div className='filename'>Name</div>
-                <div className='date_upload'>Date</div>
-                <div className='type'>Type</div>
+
+              <div className='logo_Myfile'>
+                <h1>Projext</h1>
               </div>
-              <div className='box_DATA'>
-                <div className='name_DATA'>
-                  {datas.map((name,index)=>(
-                    <div className='row_name' key={index}>
-                      <p>{name.UserDataName}</p>
-                    </div>
-                  ))}
+              <div className='line'></div>
+              <div className='Info'>
+                <div className='bg_Info'>
+                  <div className='filename'>Name</div>
+                  <div className='date_upload'>Date</div>
+                  <div className='type'>Type</div>
                 </div>
-                <div className='date_DATA'>
-                  {datas.map((date,index)=>(
-                    <div className='row_name' key={index}>
-                      <p>{date.createdAt}</p>
-                    </div>
-                  ))}
+                <div className='box_DATA'>
+                  <div className='name_DATA'>
+                    {datas.map((name,index)=>(
+                      <div className='row_name' key={index}>
+                        <p>{name.UserDataName}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className='date_DATA'>
+                    {datas.map((date,index)=>(
+                      <div className='row_name' key={index}>
+                        <p>{date.createdAt}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className='type_DATA'>
+                    {datas.map((type,index)=>(
+                      <div className='row_name' key={index}>
+                        <p>{type.Type}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className='button_download'>
+                    {datas.map((data,index)=>(
+                      <div className='row_button' key={index}>
+                        <button onClick={()=>downloadClick(data.UserDataName,data.UserDataPath,data.Type)}>
+                          <div className='download_icon'>
+                            <TbDownload/>
+                          </div>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className='type_DATA'>
-                  {datas.map((type,index)=>(
-                    <div className='row_name' key={index}>
-                      <p>{type.Type}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className='button_download'>
-                  {datas.map((data,index)=>(
-                    <div className='row_button' key={index}>
-                      <button onClick={()=>downloadClick(data.UserDataName,data.UserDataPath,data.Type)}>
-                        <div className='download_icon'>
-                          <TbDownload/>
-                        </div>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div> 
+              </div> 
+
           </div>
         </div>
       </>

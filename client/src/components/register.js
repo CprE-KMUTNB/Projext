@@ -54,11 +54,11 @@ function Register() {
           </div>
           <div className='inputPASSWORD'>
             <label>password</label>
-            <input type="text" value={PASSWORD} onChange={inputValue("PASSWORD")}></input>
+            <input type="password" value={PASSWORD} onChange={inputValue("PASSWORD")}></input>
           </div>
           <div className='inputCONFIRM_PASSWORD'>
             <label>confirm password</label>
-            <input type="text" value={CONFIRM_PASSWORD} onChange={inputValue("CONFIRM_PASSWORD")}></input>
+            <input type="password" value={CONFIRM_PASSWORD} onChange={inputValue("CONFIRM_PASSWORD")}></input>
           </div>
           <div className='inputNAME'>
             <label>name</label>

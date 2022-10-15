@@ -96,3 +96,9 @@
     opacity: 0.7;
     cursor: pointer;
 }
+.ID input{
+    text-indent: 1.5vw;
+}
+.PASSWORD input{
+    text-indent: 1.5vw;
+}

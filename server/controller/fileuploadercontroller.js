@@ -5,11 +5,14 @@ const MultipleFile = require('../model/multiplefile');
 const singleFileUpload = async (req, res, next) => {
     
     try{
+        const type = req.file.originalname.split('.')
+        const p = req.file.path.split(".")
+        console.log(p)
         const file = new SingleFile({
-            ID:'test1',
+            ID:req.headers.authorization,
             UserDataName: req.file.originalname.split('.')[0],
-            UserDataPath: req.file.path.split('.')[0],
-            Type:'.'+req.file.mimetype.split('/')[1],
+            UserDataPath: p[0]+"."+p[1] ,
+            Type:"."+type.pop()
         });
         await file.save();
         res.status(201).send('File Uploaded Successfully');

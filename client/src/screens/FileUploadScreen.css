@@ -1,0 +1,52 @@
+.box_upscreen{
+    max-height: 36vw;
+    width: 25vw;
+    height: 36vw;
+    border-radius: 15px;
+    background-color: rgb(255, 249, 249);
+}
+.title_text{
+    margin-top: 1vw;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+
+    color: #f88;
+}
+.inputfile{
+    font-size: 1vw;
+}
+.col-10{
+    margin-top: 5vw;
+    display: grid;
+    justify-content: center;
+}
+.col-10 button{
+    background-color: #f88;
+    border-radius: 30px;
+    border: none;
+    width: 12vw;
+    border-width: 0.11vw;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2vw;
+
+    color: rgb(255, 255, 255);
+}
+.form-group{
+    display: grid;
+    justify-content: center;
+}
+.row {
+    display: grid;
+    justify-content: center;
+}
+
+.col-10:hover{
+    opacity: 0.7;
+}
+.col-10 button{
+    cursor: pointer;
+}
