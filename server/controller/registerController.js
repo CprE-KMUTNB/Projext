@@ -34,11 +34,20 @@ exports.create=(req,res)=>{
 
 //ดึงข้อมูล
 exports.getAlldata = (req,res) => {
-    const ID = req.headers.authorization;
-    space.find({ID})
+
+    const ID = req.headers.userid;
+    const search = req.headers.search; 
+    console.log(search)
+    if(search[0] == "."){
+        space.find({ID:ID,Type:{$regex:search}})
+        .then(Alldata => {
+        return res.json(Alldata)
+    })}
+    else{
+    space.find({ID:ID,UserDataName:{$regex:search}})
     .then(Alldata => {
         return res.json(Alldata)
-    })
+    })}
 }
 
 //ดึงข้อมูลที่สนใจอ้างอิงจาก slug

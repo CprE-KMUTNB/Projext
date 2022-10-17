@@ -7,26 +7,40 @@ import Navbar from './Navbar';
 import {useState,useEffect} from "react";
 import { getNAME } from "../services/authorize"
 import { TbDownload } from "react-icons/tb";
+import { HiSearch } from "react-icons/hi";
+import { ImUpload } from "react-icons/im";
+import { Link } from 'react-router-dom';
 
 function Myfile() {
 
+  const [state,setState] = useState({
+    search:" "
+  })
+  const {search} = state
+  const SE = " "
+  const inputValue=name=>event=>{
+    setState({...state,[name]:event.target.value})
+    const SE = event.target.value
+    //console.log(name,"=",event.target.value)
+    fetchData(SE)
+  }
 
   const url = String(process.env.REACT_APP_API) + "/getalldata"
 
   const ID = String(getNAME())
-
+  
   const[datas,setdatas] = useState([])
 
-  const fetchData =()=>{
+  const fetchData =(SE)=>{
     axios
-    .get(url,{headers:{authorization:ID}})
+    .get(url,{headers:{"userid":ID,"search":SE}})
     .then(resp=>{
-      setdatas(resp.data)
+      setdatas(resp.data) 
     })
     .catch(err=>alert(err));
   }
   useEffect(()=>{
-    fetchData()
+    fetchData(SE)
   },[])
 
   const downloadClick =(NAME,path,type)=>{
@@ -49,12 +63,37 @@ function Myfile() {
     })
   }
 
+
     return (
       <>
         <Navbar/>
         <div className='bg_Myfile'>
+          {!getNAME() && (
+          <div className='boxx'>
+            <div className='box_search1'>
+              <div className='icon_search'><HiSearch/></div>
+              <input type="text" value={search} onChange={inputValue("search")}></input>
+            </div>
+          </div>
+          )}
+          {getNAME() && (
+          <div className='boxx'>
+            <div className='box_upload'>
+              <Link to="/upload">
+                <button>
+                  <div className='icon_upload'><ImUpload/></div>
+                  <label>upload</label>
+                </button>
+              </Link>
+            </div>
+            <div className='box_search'>
+              <div className='icon_search'><HiSearch/></div>
+              <input type="text" value={search} onChange={inputValue("search")}></input>
+            </div>
+          </div>
+          )}
+          <div className='box_ofMyfile'>
           <div className='box_Myfile'>
-
               <div className='logo_Myfile'>
                 <h1>Projext</h1>
               </div>
@@ -76,7 +115,7 @@ function Myfile() {
                   <div className='date_DATA'>
                     {datas.map((date,index)=>(
                       <div className='row_name' key={index}>
-                        <p>{date.createdAt}</p>
+                        <p>{date.createdAt.slice(0,10)}</p>
                       </div>
                     ))}
                   </div>
@@ -100,7 +139,7 @@ function Myfile() {
                   </div>
                 </div>
               </div> 
-
+          </div>
           </div>
         </div>
       </>

@@ -22,7 +22,7 @@ function Navbar() {
             <Link to = "/myfile">
               <h2>Myfile</h2>
             </Link>
-            <Link to = "/upload">
+            <Link to = "/Info">
               <h2>Info</h2>
             </Link>
           </div>

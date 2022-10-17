@@ -2,7 +2,7 @@ import React from 'react';
 import './register.css';
 import Navbar from './Navbar';
 import {useState} from "react";
-
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Swal from "sweetalert2"
 
@@ -32,6 +32,7 @@ function Register() {
       'Your ID can login.',
       'success')
       setState({...state,ID:"",PASSWORD:"",CONFIRM_PASSWORD:"",NAME:""})
+      navigate('/login')
     })
     .catch(err=>{ Swal.fire({
         icon: 'error',
@@ -41,7 +42,7 @@ function Register() {
       })
     })
   }
-
+  const navigate = useNavigate();
   return (  
     <>
       <Navbar/>
