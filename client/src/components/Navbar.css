@@ -68,7 +68,7 @@
 }
 
 .logout_button button{
-    margin-left: 0.5vw;
+    margin-left: 1vw;
     border-radius: 10px;
 
     font-family: 'Poppins';
@@ -91,4 +91,7 @@
 
     letter-spacing: 0.07em;
     color: #FFFFFF;
+}
+.username a{
+    text-decoration: none;
 }

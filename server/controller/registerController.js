@@ -37,7 +37,7 @@ exports.getAlldata = (req,res) => {
 
     const ID = req.headers.userid;
     const search = req.headers.search; 
-    console.log(search)
+    console.log({user:search})
     if(search[0] == "."){
         space.find({ID:ID,Type:{$regex:search}})
         .then(Alldata => {

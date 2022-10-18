@@ -38,7 +38,7 @@ function Navbar() {
           </div>)}
           {getNAME() && (
             <div className='username'>
-              <h2>{UserName}</h2>
+              <Link to ="/userinfo"><h2>{UserName}</h2></Link>
             </div>)} 
           {getNAME() && (
             <div className='logout_button'>

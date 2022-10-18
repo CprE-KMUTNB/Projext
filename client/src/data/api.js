@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiUrl = 'http://localhost:5500/api/';
+const apiUrl = 'http://192.168.1.42:5500/api/';
 
 export const singleFileUpload = async (data, options) => {
     try {
@@ -21,7 +21,7 @@ export const getSingleFiles = async () => {
     }
 }
 
-export const multipleFilesUpload = async (data, options) => {
+/*export const multipleFilesUpload = async (data, options) => {
     try {
         await axios.post(apiUrl + 'multipleFiles', data, options);
     } catch (error) {
@@ -35,4 +35,4 @@ export const getMultipleFiles = async () => {
     }catch(error){
         throw error;
     }
-}
+}*/

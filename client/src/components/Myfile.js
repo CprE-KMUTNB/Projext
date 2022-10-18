@@ -9,9 +9,14 @@ import { getNAME } from "../services/authorize"
 import { TbDownload } from "react-icons/tb";
 import { HiSearch } from "react-icons/hi";
 import { ImUpload } from "react-icons/im";
+import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 function Myfile() {
+
+  const refreshPage =()=>{
+    window.location.reload();
+  }
 
   const [state,setState] = useState({
     search:" "
@@ -62,6 +67,15 @@ function Myfile() {
       fileDownload(res.data,fileName)
     })
   }
+  const handleDelete = (path,type) => {
+    console.log({"userdatapath":path,"type":type})
+    axios
+    .delete(String(process.env.REACT_APP_API)+'/testdelete',{headers:{"UserDataPath":path,"Type":type}})
+    .then(resp => {
+      console.log(resp.data)
+    })
+    refreshPage()
+  } 
 
 
     return (
@@ -132,6 +146,17 @@ function Myfile() {
                         <button onClick={()=>downloadClick(data.UserDataName,data.UserDataPath,data.Type)}>
                           <div className='download_icon'>
                             <TbDownload/>
+                          </div>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  <div className='button_delete'>
+                    {datas.map((datas,index)=>(
+                      <div className='row_buttonD' key={index}>
+                        <button>
+                          <div className='delete_icon' onClick={()=>handleDelete(datas.UserDataPath,datas.Type)}>
+                            <MdDelete/>
                           </div>
                         </button>
                       </div>

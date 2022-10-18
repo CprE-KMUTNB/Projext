@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './upload.css';
 import FileUploadScreen from '../screens/FileUploadScreen';
-import {getSingleFiles, getMultipleFiles} from '../data/api';
+import {getSingleFiles} from '../data/api';
 import Navbar from './Navbar';
 
 function Upload() {
 
   const [singleFiles, setSingleFiles] = useState([]);
-  const [multipleFiles, setMultipleFiles] = useState([]);
 
   const getSingleFileslist = async () => {
     try {
@@ -17,18 +16,8 @@ function Upload() {
       console.log(error);
     }
   }
-  const getMultipleFilesList = async () => {
-    try {
-        const fileslist = await getMultipleFiles();
-        setMultipleFiles(fileslist);
-        console.log(multipleFiles);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   useEffect(() => {
     getSingleFileslist();
-    getMultipleFilesList();
   }, []);
   return (
     <>
