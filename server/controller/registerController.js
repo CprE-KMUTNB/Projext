@@ -3,6 +3,7 @@
 const slugify = require("slugify")
 const tests = require("../model/tests")
 const DATA = require("../model/tests")
+const userDATA = require("../model/tests")
 const space = require("../model/space")
 //สร้างข้อมูล
 exports.create=(req,res)=>{
@@ -49,6 +50,13 @@ exports.getAlldata = (req,res) => {
         return res.json(Alldata)
     })}
 }
+exports.getsingleDATA=(req,res)=>{
+    const ID = req.headers.authorization
+    userDATA.findOne({ID})
+    .then(data => {
+        return res.json(data)
+    })
+}
 
 //ดึงข้อมูลที่สนใจอ้างอิงจาก slug
 exports.mydata=(req,res)=>{
@@ -69,3 +77,14 @@ exports.createspace=(req,res)=>{
         }
     })
 }
+
+exports.editname=(req,res)=>{
+    const ID = req.body.ID
+    const Edit = req.body.edit
+    DATA.findOneAndUpdate({ID:ID},{$set:{NAME:req.body.edit}})
+    .then(resp=>{
+        return res.json(resp)
+    })
+    
+}
+

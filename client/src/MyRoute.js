@@ -4,6 +4,7 @@ import Register from "./components/register"
 import Login from "./components/Login"
 import Myfile from "./components/Myfile"
 import Upload from "./components/upload"
+import UserInfo from "./components/userinfo"
 
 
 const MyRoute=()=>{
@@ -15,6 +16,7 @@ const MyRoute=()=>{
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/myfile" element={<Myfile/>}></Route>
                 <Route path="/upload" element={<Upload/>}></Route>
+                <Route path="/userinfo" element={<UserInfo/>}></Route>
             </Routes>
         </BrowserRouter>
     );
