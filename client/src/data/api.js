@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiUrl = 'http://192.168.1.42:5500/api/';
+const apiUrl = 'http://localhost:5500/api/';
 
 export const singleFileUpload = async (data, options) => {
     try {
