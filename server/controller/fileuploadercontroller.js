@@ -70,20 +70,10 @@ const fileSizeFormatter = (bytes, decimal) => {
     return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + ' ' + sizes[index];
 
 }
-const deletefile = async (req, res, next) => {
-    try{
-        await SingleFile.findOneAndDelete({name :'Exam_Digital_1'});
-        res.status(201).send(console.log('Deleted'));
-    }catch(error) {
-        res.status(400).send(error.message);
-    }
-}
-
 
 module.exports = {
     singleFileUpload,
     multipleFileUpload,
     getallSingleFiles,
     getallMultipleFiles,
-    deletefile
 }

@@ -10,3 +10,19 @@
     justify-content: center;
     color: rgb(255, 255, 255);
 }
+.bg_Home a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 25vw;
+}
+.Animation{
+    display: flex;
+    font-size: 3vw;
+    color: white;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    justify-content: center;
+    margin-top: 3vw;
+}
