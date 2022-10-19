@@ -19,10 +19,10 @@ function Myfile() {
   }
 
   const [state,setState] = useState({
-    search:" "
+    search:""
   })
   const {search} = state
-  const SE = " "
+  const SE =""
   const inputValue=name=>event=>{
     setState({...state,[name]:event.target.value})
     const SE = event.target.value
@@ -44,6 +44,9 @@ function Myfile() {
     })
     .catch(err=>alert(err));
   }
+  useEffect(()=>{
+    fetchData(SE)
+  },[])
 
   const downloadClick =(NAME,path,type)=>{
     if (type === "File folder"){

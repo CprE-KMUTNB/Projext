@@ -9,7 +9,6 @@ const authRoute = require('./route/auth')
 
 const app = express()
 
-//conect
 mongoose.connect(process.env.DATABASE
     ,{
         useNewUrlParser:true,
