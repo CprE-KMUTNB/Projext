@@ -1,7 +1,5 @@
 .box_upscreen{
-    max-height: 36vw;
     width: 25vw;
-    height: 36vw;
     border-radius: 15px;
     background-color: rgb(255, 249, 249);
 }
@@ -32,6 +30,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 2vw;
+    margin-bottom: 2.5vw;
 
     color: rgb(255, 255, 255);
 }
@@ -42,6 +41,9 @@
 .row {
     display: grid;
     justify-content: center;
+}
+.row .circle{
+    margin-bottom: 2.5vw;
 }
 
 .col-10:hover{

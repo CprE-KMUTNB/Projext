@@ -44,9 +44,6 @@ function Myfile() {
     })
     .catch(err=>alert(err));
   }
-  useEffect(()=>{
-    fetchData(SE)
-  },[])
 
   const downloadClick =(NAME,path,type)=>{
     if (type === "File folder"){

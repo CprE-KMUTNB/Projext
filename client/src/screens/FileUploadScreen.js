@@ -8,23 +8,33 @@ import { getNAME } from "../services/authorize"
 
 const FileUploadScreen = (props) => {
 
+    const [click,setClick] = useState(false)
+    const hanclick = () => setClick(!click)
+
+    const [click2,setClick2] = useState(false)
+    const hanclick2 = () => setClick2(!click2)
+
     const [singleFile, setSingleFile] = useState('');
     const [singleProgress, setSingleProgress] = useState(0);
 
     const SingleFileChange = (e) => {
         setSingleFile(e.target.files[0]);
         setSingleProgress(0);
+        setClick(true)
+        setClick2(false)
     }
     const singleFileOptions = {
+        headers:{authorization:getNAME()},
         onUploadProgress: (progressEvent) => {
             const {loaded, total} = progressEvent;
             const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
             setSingleProgress(percentage);
-        },
-        headers:{authorization:getNAME()}
+        }
     }
 
     const uploadSingleFile = async () => {
+        hanclick()
+        setClick2(true)
         const formData = new FormData();
         formData.append('file', singleFile);
         await singleFileUpload(formData, singleFileOptions);
@@ -41,6 +51,7 @@ const FileUploadScreen = (props) => {
                     <br/>
                     <input type="file" className="inputfile" onChange={(e) => SingleFileChange(e)}></input>
                 </div>
+                {click2==true && (
                 <div className="row">
                     <br/>
                     <div className="circle" style={{width:"15vw"}}>
@@ -56,13 +67,15 @@ const FileUploadScreen = (props) => {
                                 textColor: '#f88',
                                 trailColor: '#d6d6d6',
                                 backgroundColor: '#3e98c7',
-                            })}
-                        />
+                            })}/>
                     </div>
                 </div>
+                )}
+                {click==true && (
                 <div className="col-10">
                     <button type="button" className="btn btn-danger" onClick={() => uploadSingleFile()} >Upload</button>
                 </div>
+                )}
             </div>
         </div>
     );

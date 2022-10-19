@@ -95,3 +95,7 @@
 .username a{
     text-decoration: none;
 }
+
+.username:hover{
+    opacity: 0.7;
+}
