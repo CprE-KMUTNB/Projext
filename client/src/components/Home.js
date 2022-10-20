@@ -4,7 +4,7 @@ import './Home_screen.css' ;
 import styled from 'styled-components' ;
 import { Link } from 'react-router-dom';
 import MovingText from 'react-moving-text'
-
+import bg_vid from "./video/Y2Mate.is - Cyber Security Background Video-gnFdL55LCuQ-1080p-1656371465771.mp4";
 
 const Button = styled.button`
   background-color : white;
@@ -40,9 +40,23 @@ function Home() {
     <>
       <div className='bg_Home'>
         <div className='App'>
-          <div className='Animation'>
+          <video autoPlay loop muted
+            style = {{
+              position: "absolute",
+              width: "100%",
+              left: "50%",
+              height:"100%",
+              top:"50%",
+              objectFit:"cover",
+              transform:"translate(-50%, -50%)",
+              zIndex:"-1"
+            }}
+          >
+            <source src={bg_vid} type="video/mp4" />
+          </video>
+        </div>
+        <div className='Animation'>
             <MyAnimatedTypo /> 
-          </div>
         </div>
         <Link to = "/register"><Button>register and try for free</Button></Link>
       </div>

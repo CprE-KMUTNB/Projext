@@ -2,7 +2,7 @@
     max-width: auto;
     max-height: auto;
     height: 100vh;
-    background:#192026 ;
+    background: none ;
     overflow: hidden;
 }
 .bg_Home h1{
@@ -25,4 +25,10 @@
     font-weight: 600;
     justify-content: center;
     margin-top: 3vw;
+}
+.App{
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
