@@ -22,7 +22,6 @@ function Myfile() {
     search:""
   })
   const {search} = state
-  const SE =""
   const inputValue=name=>event=>{
     setState({...state,[name]:event.target.value})
     const SE = event.target.value
@@ -32,20 +31,20 @@ function Myfile() {
 
   const url = String(process.env.REACT_APP_API) + "/getalldata"
 
-  const ID = String(getNAME())
+  //const ID = String()
   
   const[datas,setdatas] = useState([])
 
   const fetchData =(SE)=>{
     axios
-    .get(url,{headers:{"userid":ID,"search":SE}})
+    .get(url,{headers:{"userid":getNAME(),"search":SE}})
     .then(resp=>{
       setdatas(resp.data) 
     })
     .catch(err=>alert(err));
   }
   useEffect(()=>{
-    fetchData(SE)
+    fetchData("")
   },[])
 
   const downloadClick =(NAME,path,type)=>{
