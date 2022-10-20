@@ -41,4 +41,3 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'assets')));
 
 app.use('/api', fileRoutes.routes);
-

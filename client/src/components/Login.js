@@ -10,7 +10,6 @@ import { Link,useNavigate } from 'react-router-dom';
 
 
 function Login(props) {
-
     const [state,setState] = useState({
         ID:"",
         password:""
