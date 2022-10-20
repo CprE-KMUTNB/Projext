@@ -14,9 +14,10 @@
 }
 .inputfile{
     font-size: 1vw;
+    margin-bottom: 2vw;
 }
 .col-10{
-    margin-top: 5vw;
+    margin-top: 0vw;
     display: grid;
     justify-content: center;
 }
@@ -39,7 +40,7 @@
     justify-content: center;
 }
 .form-group input{
-    margin-bottom: 1.5vw;
+    height: 2vw;
 }
 .row {
     display: grid;
@@ -54,22 +55,4 @@
 }
 .col-10 button{
     cursor: pointer;
-}
-.icon_drop{
-    display: grid;
-    justify-content: center;
-}
-.icon_drop label{
-    display: flex;
-    justify-content: center;
-    width: 20vw;
-    font-size:12vw;
-    color: #0064bc;
-    opacity: 0.3;
-}
-.icon_drop p{
-    display: flex;
-    justify-content: center;
-    font-size:2vw;
-    color: #3899ee;
 }

@@ -51,10 +51,6 @@ const FileUploadScreen = (props) => {
                     </div>
                     <br/>
                     <input type="file" id='inputt' className="inputfile" onChange={(e) => SingleFileChange(e)}></input>
-                    <div className='icon_drop'>
-                        <label for='inputt'><AiOutlineDropbox/></label>
-                        <p>drop here!</p>
-                    </div>
                 </div>
                 {click2==true && (
                 <div className="row">
