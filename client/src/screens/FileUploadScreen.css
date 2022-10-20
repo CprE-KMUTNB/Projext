@@ -38,6 +38,9 @@
     display: grid;
     justify-content: center;
 }
+.form-group input{
+    margin-bottom: 1.5vw;
+}
 .row {
     display: grid;
     justify-content: center;
