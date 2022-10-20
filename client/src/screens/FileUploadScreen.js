@@ -63,8 +63,8 @@ const FileUploadScreen = (props) => {
                                 strokeLinecap: 'butt',
                                 textSize: '0.8vw',
                                 pathTransitionDuration: 0.5,
-                                pathColor: `rgba(255, 136, 136, ${singleProgress / 100})`,
-                                textColor: '#f88',
+                                pathColor: `rgba(56, 100, 180, ${singleProgress / 100})`,
+                                textColor: '#3899ee',
                                 trailColor: '#d6d6d6',
                                 backgroundColor: '#3e98c7',
                             })}/>

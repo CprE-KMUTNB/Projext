@@ -1,7 +1,7 @@
 .box_upscreen{
     width: 25vw;
     border-radius: 15px;
-    background-color: rgb(255, 249, 249);
+    background-color:#ffffff;
 }
 .title_text{
     margin-top: 1vw;
@@ -10,7 +10,7 @@
     font-weight: 600;
     font-size: 2vw;
 
-    color: #f88;
+    color: #3899ee;
 }
 .inputfile{
     font-size: 1vw;
@@ -21,7 +21,7 @@
     justify-content: center;
 }
 .col-10 button{
-    background-color: #f88;
+    background-color: #0e5ea4;
     border-radius: 30px;
     border: none;
     width: 12vw;
