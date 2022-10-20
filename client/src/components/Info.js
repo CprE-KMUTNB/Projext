@@ -15,6 +15,7 @@ function Info() {
       <div className='bg_Info_page'>
         <div className='box_Info_page'>
           <div className='DEV'>
+            <div className='title_dev'><h2>Developer</h2></div>
             <div className='Chun'>
               <img src={P_Chun}></img>
               <div className='info_chun'>

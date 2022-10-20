@@ -4,6 +4,7 @@ import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./FileUploadScreen.css"
 import { getNAME } from "../services/authorize"
+import { AiOutlineDropbox } from "react-icons/ai";
 
 
 const FileUploadScreen = (props) => {
@@ -49,7 +50,11 @@ const FileUploadScreen = (props) => {
                         <label>Select Single File </label>
                     </div>
                     <br/>
-                    <input type="file" className="inputfile" onChange={(e) => SingleFileChange(e)}></input>
+                    <input type="file" id='inputt' className="inputfile" onChange={(e) => SingleFileChange(e)}></input>
+                    <div className='icon_drop'>
+                        <label for='inputt'><AiOutlineDropbox/></label>
+                        <p>drop here!</p>
+                    </div>
                 </div>
                 {click2==true && (
                 <div className="row">
