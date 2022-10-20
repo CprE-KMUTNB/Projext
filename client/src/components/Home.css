@@ -1,20 +1,20 @@
 .bg_Home{
-    max-width: auto;
-    max-height: auto;
+    max-width: 100vw;
+    max-height: 100vh;
     height: 100vh;
-    background: none ;
+    background:#192026 ;
     overflow: hidden;
 }
-.bg_Home h1{
+.App h1{
     display: grid;
     justify-content: center;
     color: rgb(255, 255, 255);
 }
-.bg_Home a{
+.LL a{
     display: flex;
     justify-content: center;
     text-decoration: none;
-    margin-top: 25vw;
+    margin-top: 7vw;
 }
 .Animation{
     display: flex;
@@ -24,11 +24,17 @@
     font-style: normal;
     font-weight: 600;
     justify-content: center;
-    margin-top: 3vw;
+    margin-top: 6vw;
+    overflow: hidden;
 }
-.App{
-    background: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: 100%;
-    position: absolute;
+.App {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+.cloud_icon{
+    margin-top: 4vw;
+    display: flex;
+    justify-content: center;
+    font-size: 10vw;
+    color: aliceblue;
 }

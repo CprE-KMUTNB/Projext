@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
 import './Home.css';
 import './Home_screen.css' ;
 import styled from 'styled-components' ;
 import { Link } from 'react-router-dom';
 import MovingText from 'react-moving-text'
+import { MdOutlineCloudUpload } from "react-icons/md";
 import bg_vid from "./video/Y2Mate.is - Cyber Security Background Video-gnFdL55LCuQ-1080p-1656371465771.mp4";
 
 const Button = styled.button`
@@ -33,34 +35,34 @@ const Button = styled.button`
       'By Pongwisit and Sivakorn.'
       ]} />)
      }
+     /*<div className='App'>  
+     <video autoPlay loop muted
+     style = {{
+       position: "absolute",
+       width: "100%",
+       left: "50%",
+       height:"100%",
+       top:"50%",
+       objectFit:"cover",
+       transform:"translate(-50%, -50%)",
+       zIndex:"-1",
+   }}
+ >
+   <source src={bg_vid} type="video/mp4" />
+ </video>
+</div> */
 
 function Home() {
 
   return (
-    <>
+    <div>
+      <Navbar/>
       <div className='bg_Home'>
-        <div className='App'>
-          <video autoPlay loop muted
-            style = {{
-              position: "absolute",
-              width: "100%",
-              left: "50%",
-              height:"100%",
-              top:"50%",
-              objectFit:"cover",
-              transform:"translate(-50%, -50%)",
-              zIndex:"-1"
-            }}
-          >
-            <source src={bg_vid} type="video/mp4" />
-          </video>
-        </div>
-        <div className='Animation'>
-            <MyAnimatedTypo /> 
-        </div>
-        <Link to = "/register"><Button>register and try for free</Button></Link>
-      </div>
-    </>
+        <div className='Animation'><MyAnimatedTypo /></div>
+        <div className='cloud_icon'><MdOutlineCloudUpload/></div>
+        <div className='LL'><Link to = "/register"><Button>register and try for free</Button></Link></div> 
+      </div> 
+    </div>
   )
 }
 
