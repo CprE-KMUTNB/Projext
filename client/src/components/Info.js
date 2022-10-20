@@ -1,42 +1,42 @@
 import React from 'react';
 import './Info.css';
 import './Info_screen.css' ;
-import { useRef } from "react";
+import Navbar from './Navbar';
+import { BsGithub } from "react-icons/bs";
 
-function Info(props) {
-    const inputRef = useRef(null);
+import P_Chun from './DEV_INFO/profile_chun.jpg'
+import P_View from './DEV_INFO/profile_view.jpg'
 
-    const handleClick = () => {
-        inputRef.current.click();
-    };
-
-  const handleFileChange = event => {
-    const fileObj = event.target.files && event.target.files[0];
-    if (!fileObj) {
-      return;
-    }
-    // 👇️ can still access file object here
-    console.log('fileObj is', fileObj);
-    console.log(fileObj.name);
-    
-    // 👇️ reset file input
-    event.target.value = null;
-
-    
-  };
+function Info() {
 
   return (
     <>
-      
-      <div className='bg_Info'>
-        <input
-        style={{display: 'none'}}
-        ref={inputRef}
-        type="file"
-        onChange={handleFileChange}>
-        </input>
-
-        <button onClick={handleClick}>Open file upload box</button>
+      <Navbar/>
+      <div className='bg_Info_page'>
+        <div className='box_Info_page'>
+          <div className='DEV'>
+            <div className='Chun'>
+              <img src={P_Chun}></img>
+              <div className='info_chun'>
+                <div className='icon_git'>
+                  <BsGithub/>
+                  <a href='https://github.com/Ashuu0'>github.com/Ashuu0</a>
+                </div>
+                <label>email : s6401012620064@email.kmutnb.ac.th</label>
+              </div>
+            </div>
+            <div className='View'>
+              <img src={P_View}></img>
+              <div className='info_view'>
+                <div className='icon_git'>
+                  <BsGithub/>
+                  <a href='https://github.com/BadZepper'>github.com/BadZepper</a>
+                </div>
+                <label>email : s6401012620129@email.kmutnb.ac.th</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )

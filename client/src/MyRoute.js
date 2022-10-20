@@ -5,6 +5,7 @@ import Login from "./components/Login"
 import Myfile from "./components/Myfile"
 import Upload from "./components/upload"
 import UserInfo from "./components/userinfo"
+import Info from "./components/Info"
 
 
 const MyRoute=()=>{
@@ -17,6 +18,7 @@ const MyRoute=()=>{
                 <Route path="/myfile" element={<Myfile/>}></Route>
                 <Route path="/upload" element={<Upload/>}></Route>
                 <Route path="/userinfo" element={<UserInfo/>}></Route>
+                <Route path="/info" element={<Info/>}></Route>
             </Routes>
         </BrowserRouter>
     );

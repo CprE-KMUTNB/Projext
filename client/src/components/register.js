@@ -24,7 +24,6 @@ function Register() {
   const submitForm=(e)=>{
     e.preventDefault();
     console.table({ID,PASSWORD,CONFIRM_PASSWORD,NAME})
-    console.log("API URL = ",process.env.REACT_APP_API)
     axios
     .post(String(process.env.REACT_APP_API)+'/register',{ID,PASSWORD,CONFIRM_PASSWORD,NAME})
     .then(response=>{Swal.fire(
