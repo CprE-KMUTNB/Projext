@@ -11,6 +11,8 @@ import { HiSearch } from "react-icons/hi";
 import { ImUpload } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2"
+import { IoIosShareAlt } from "react-icons/io";
 
 function Myfile() {
 
@@ -31,8 +33,6 @@ function Myfile() {
 
   const url = String(process.env.REACT_APP_API) + "/getalldata"
 
-  //const ID = String()
-  
   const[datas,setdatas] = useState([])
 
   const fetchData =(SE)=>{
@@ -48,6 +48,7 @@ function Myfile() {
   },[])
 
   const downloadClick =(NAME,path,type)=>{
+    //console.log({NAME,path,type})
     if (type === "File folder"){
       type = ".zip"
     }
@@ -60,23 +61,80 @@ function Myfile() {
     {headers:{authorization:[NAME,path,type]},
     responseType: 'blob'})
     .then((res) => {
-      console.log({res_data:res.data})
+      //console.log({res_data:res.data})
       const fileName = NAME + type
-      console.log(res.data)
+      //console.log(res.data)
       fileDownload(res.data,fileName)
     })
   }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-right',
+    iconColor: 'white',
+    customClass: {
+      popup: 'colored-toast'
+    },
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true
+  })
+
   const handleDelete = (path,type) => {
-    console.log({"userdatapath":path,"type":type})
-    axios
-    .delete(String(process.env.REACT_APP_API)+'/testdelete',{headers:{"UserDataPath":path,"Type":type}})
-    .then(resp => {
-      console.log(resp.data)
+    //console.log({"userdatapath":path,"type":type})
+    Swal.fire({
+      title: 'Do you want to delete?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap mtop',
+        confirmButton: 'order-2 mtop',
+      }
+    }).then(async(result) => {
+      if (result.isConfirmed){
+        axios
+        .delete(String(process.env.REACT_APP_API)+'/testdelete',{headers:{"UserDataPath":path,"Type":type}})
+        .then(resp => {
+          console.log(resp.data)
+        })
+      }
+      await Toast.fire({
+        icon: 'success',
+        title: 'Success'
+      })
+      refreshPage()   
     })
-    refreshPage()
-  } 
+    }
 
-
+    function makeid(length,NAME,path,type) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!+@#$&*-';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      const slink = 'http://localhost:3000/share/'+result+NAME+';'+path.split('\\')[0]+path.split('\\')[1]+'<<!'+type+'>!'+ getNAME();
+      console.log(slink)
+      axios
+      .get(String(process.env.REACT_APP_API)+'/singlesharecreate',
+      {headers:{"owner":getNAME(),
+                "filename":NAME,
+                "filepath":path,
+                "filetype":type,
+                "slugg":result,
+                "shareto":""}})
+      .then(async(resp)=>{
+          await Swal.fire(
+              'Your link',
+              slink,
+              'success')
+          refreshPage()
+      })
+      .catch(err=>alert(err));
+    }
+  
+  
     return (
       <>
         <Navbar/>
@@ -153,14 +211,27 @@ function Myfile() {
                   <div className='button_delete'>
                     {datas.map((datas,index)=>(
                       <div className='row_buttonD' key={index}>
-                        <button>
-                          <div className='delete_icon' onClick={()=>handleDelete(datas.UserDataPath,datas.Type)}>
+                        <button onClick={()=>handleDelete(datas.UserDataPath,datas.Type)}>
+                          <div className='delete_icon'>
                             <MdDelete/>
                           </div>
                         </button>
                       </div>
                     ))}
                   </div>
+
+                  <div className='button_share'>
+                    {datas.map((datas,index)=>(
+                      <div className='row_buttonS' key={index}>
+                        <button onClick={()=>makeid(35,datas.UserDataName,datas.UserDataPath,datas.Type)}>
+                          <div className='share_icon'>
+                            <IoIosShareAlt/>
+                          </div>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
                 </div>
               </div> 
           </div>

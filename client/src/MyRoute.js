@@ -6,6 +6,7 @@ import Myfile from "./components/Myfile"
 import Upload from "./components/upload"
 import UserInfo from "./components/userinfo"
 import Info from "./components/Info"
+import SharePage from "./components/sharepage"
 
 
 const MyRoute=()=>{
@@ -19,6 +20,7 @@ const MyRoute=()=>{
                 <Route path="/upload" element={<Upload/>}></Route>
                 <Route path="/userinfo" element={<UserInfo/>}></Route>
                 <Route path="/info" element={<Info/>}></Route>
+                <Route path="/share/:slug" element={<SharePage/>}></Route>
             </Routes>
         </BrowserRouter>
     );

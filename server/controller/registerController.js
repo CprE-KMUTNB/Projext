@@ -35,19 +35,19 @@ exports.create=(req,res)=>{
 
 //ดึงข้อมูล
 exports.getAlldata = (req,res) => {
-
+    //console.log(req.headers)
     const ID = req.headers.userid;
     const search = req.headers.search; 
-    console.log({user:search})
+    //console.log({user:search})
     if(search[0] == "."){
         space.find({ID:ID,Type:{$regex:search}})
         .then(Alldata => {
-        return res.json(Alldata)
+        return res.status(200).json(Alldata)
     })}
     else{
     space.find({ID:ID,UserDataName:{$regex:search}})
     .then(Alldata => {
-        return res.json(Alldata)
+        return res.status(202).json(Alldata)
     })}
 }
 exports.getsingleDATA=(req,res)=>{

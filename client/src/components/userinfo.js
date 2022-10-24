@@ -7,6 +7,7 @@ import { getNAME } from "../services/authorize"
 import { BiHide } from "react-icons/bi";
 import { TbEdit } from "react-icons/tb";
 import Swal from "sweetalert2"
+import { Link } from 'react-router-dom';
 
 function UserInfo() {
 
@@ -96,6 +97,9 @@ function UserInfo() {
                                 </button>
                             </div>)}
                     </div>
+                    <button>
+                        <Link to='/share/test1'>SharePage</Link>
+                    </button>
 
                 </div>  
             </div>
