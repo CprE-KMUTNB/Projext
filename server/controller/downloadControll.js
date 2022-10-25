@@ -1,7 +1,7 @@
 const space = require("../model/space")
 exports.getDATA =(req,res)=>{
     const auth = req.headers.authorization;
-    console.log({"headers":auth})
+    //console.log({"headers":auth})
     const split = auth.split(",")
     const name = split[0]
     const path = "./"+split[1]
@@ -13,12 +13,12 @@ exports.getDATA =(req,res)=>{
     switch(true){
         case String(type) == ("File folder") :
             const file_path_ff = String(path) + ".zip"
-            console.log(file_path_ff)
+            //console.log(file_path_ff)
             return res.download(file_path_ff)
 
         case String(type) != ("File folder") :
             const file_path = String(path)+ String(type)
-            console.log(file_path)
+            //console.log(file_path)
             return res.download(file_path)
     }
 }
@@ -32,7 +32,10 @@ exports.testDelete =(req,res)=>{
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlinkSync(realpath)
+        await fs.unlink(realpath,(err)=>{
+            if(err){
+                return res.json(err)
+            }})
         return res.status(200).json("Delete complete")
     })
     

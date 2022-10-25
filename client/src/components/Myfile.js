@@ -26,9 +26,8 @@ function Myfile() {
   const {search} = state
   const inputValue=name=>event=>{
     setState({...state,[name]:event.target.value})
-    const SE = event.target.value
     //console.log(name,"=",event.target.value)
-    fetchData(SE)
+    fetchData(event.target.value)
   }
 
   const url = String(process.env.REACT_APP_API) + "/getalldata"
@@ -98,12 +97,12 @@ function Myfile() {
         .then(resp => {
           console.log(resp.data)
         })
-      }
-      await Toast.fire({
-        icon: 'success',
-        title: 'Success'
-      })
-      refreshPage()   
+        await Toast.fire({
+          icon: 'success',
+          title: 'Success'
+        })
+        refreshPage() 
+      }       
     })
     }
 
