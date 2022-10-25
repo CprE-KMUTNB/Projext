@@ -9,7 +9,7 @@ exports.getDATA =(req,res)=>{
     //console.log(split[0])
     //console.log(split[1])
     //console.log(split[2])
-    
+
     switch(true){
         case String(type) == ("File folder") :
             const file_path_ff = String(path) + ".zip"
@@ -23,20 +23,20 @@ exports.getDATA =(req,res)=>{
     }
 }
 exports.testDelete =(req,res)=>{
-    const list_path = (req.headers.userdatapath).split("\\",2)
+    const list_path = (req.headers.userdatapath).split("\",2)
     const path = list_path[0]+"/"+list_path[1]
     const PT = list_path[1]+ String(req.headers.type)
-    const realpath = "./assets/" + PT
+    const realpath = String("./assets/" + PT)
+    const ToPath = String(realpath)
+    console.log({"realpath":ToPath})
     const fs = require('fs')
-    console.log({realpath})
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlink(realpath,(err)=>{
+        await fs.unlink(ToPath,(err)=>{
             if(err){
                 return res.json(err)
             }})
         return res.status(200).json("Delete complete")
-    })
-    
+    }) 
 }
