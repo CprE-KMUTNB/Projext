@@ -107,15 +107,47 @@ function Myfile() {
     })
     }
 
-    function makeid(length,NAME,path,type) {
+    const sweet_input = (length,NAME,path,type) =>{
+      axios
+      .get(String(process.env.REACT_APP_API)+'/checkshare',
+      {headers:{"owner":getNAME(),
+                "filepath":path}})
+      .then(resp=>{
+        if(resp.data=='NO_DATA'){
+          Swal.fire({
+            title: 'Share To',
+            html: `<input type="text" id="login" class="swal2-input" placeholder="share to">`,
+            confirmButtonText: 'confirm',
+            showCancelButton: true,
+            focusConfirm: false,
+            preConfirm: () => {
+              const to = Swal.getPopup().querySelector('#login').value
+              return { shareto: to}
+            }
+          }).then(async(result) => {
+            await Swal.fire(`
+              share to : ${result.value.shareto}
+            `.trim())
+            makeid(length,NAME,path,type,result.value.shareto)
+          })
+        }
+        else{
+          Swal.fire(
+            'Your link',
+            `<a href="${resp.data}">${resp.data}</a>`,
+            'success')
+        }
+      })  
+    }
+
+    function makeid(length,NAME,path,type,shareto) {
       var result           = '';
-      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!+@#$&*-';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       var charactersLength = characters.length;
       for ( var i = 0; i < length; i++ ) {
           result += characters.charAt(Math.floor(Math.random() * charactersLength));
       }
       const slink = 'http://localhost:3000/share/'+result+NAME+';'+path.split('\\')[0]+path.split('\\')[1]+'<<!'+type+'>!'+ getNAME();
-      console.log(slink)
       axios
       .get(String(process.env.REACT_APP_API)+'/singlesharecreate',
       {headers:{"owner":getNAME(),
@@ -123,13 +155,15 @@ function Myfile() {
                 "filepath":path,
                 "filetype":type,
                 "slugg":result,
-                "shareto":""}})
-      .then(async(resp)=>{
-          await Swal.fire(
+                "shareto":shareto,
+                "link":slink}})
+      .then((resp)=>{
+          //console.log({'from server':resp.data})
+          Swal.fire(
               'Your link',
-              slink,
+              `<a href="${resp.data}">${resp.data}</a>`,
               'success')
-          refreshPage()
+          //refreshPage()
       })
       .catch(err=>alert(err));
     }
@@ -223,7 +257,7 @@ function Myfile() {
                   <div className='button_share'>
                     {datas.map((datas,index)=>(
                       <div className='row_buttonS' key={index}>
-                        <button onClick={()=>makeid(35,datas.UserDataName,datas.UserDataPath,datas.Type)}>
+                        <button onClick={()=>sweet_input(35,datas.UserDataName,datas.UserDataPath,datas.Type)}>
                           <div className='share_icon'>
                             <IoIosShareAlt/>
                           </div>

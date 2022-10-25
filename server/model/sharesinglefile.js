@@ -23,8 +23,12 @@ const singleshare = mongoose.Schema({
     },
     ShareTo :{
         type:String,
-        default : "0"
+        default : ""
+    },
+    Links : {
+        type:String
     }
+
     
     
 
