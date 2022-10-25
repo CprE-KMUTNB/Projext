@@ -25,14 +25,14 @@ exports.getDATA =(req,res)=>{
 exports.testDelete =(req,res)=>{
     const list_path = (req.headers.userdatapath).split("\\",2)
     const path = list_path[0]+"/"+list_path[1]
-    const type = req.headers.type;
-    const realpath = "./" + path + type
+    const PT = list_path[1]+ String(req.headers.type)
+    const realpath = "./assets/" + PT
     const fs = require('fs')
-    console.log({"realpath":`./${path}${type}`})
+    console.log({realpath})
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlink(`./${path}${type}`,(err)=>{
+        await fs.unlink(realpath,(err)=>{
             if(err){
                 return res.json(err)
             }})
