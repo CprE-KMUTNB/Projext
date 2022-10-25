@@ -7,7 +7,7 @@ const singleFileUpload = async (req, res, next) => {
     try{
         const type = req.file.originalname.split('.')
         const p = req.file.path.split(".")
-        console.log(p)
+        //console.log(p)
         const file = new SingleFile({
             ID:req.headers.authorization,
             UserDataName: req.file.originalname.split('.')[0],

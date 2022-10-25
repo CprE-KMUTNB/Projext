@@ -1,14 +1,14 @@
 const space = require("../model/space")
 exports.getDATA =(req,res)=>{
     const auth = req.headers.authorization;
-    console.log(auth)
+    console.log({"headers":auth})
     const split = auth.split(",")
     const name = split[0]
     const path = "./"+split[1]
     const type = split[2]
-    console.log(split[0])
-    console.log(split[1])
-    console.log(split[2])
+    //console.log(split[0])
+    //console.log(split[1])
+    //console.log(split[2])
     
     switch(true){
         case String(type) == ("File folder") :
@@ -18,6 +18,7 @@ exports.getDATA =(req,res)=>{
 
         case String(type) != ("File folder") :
             const file_path = String(path)+ String(type)
+            console.log(file_path)
             return res.download(file_path)
     }
 }
@@ -27,10 +28,12 @@ exports.testDelete =(req,res)=>{
     const type = req.headers.type;
     const realpath = "./" + path + type
     const fs = require('fs')
+    console.log({realpath})
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
-    .then(resp =>{
+    .then(async(resp) =>{
+        await fs.unlinkSync(realpath)
         return res.status(200).json("Delete complete")
     })
-    fs.unlinkSync(realpath)
+    
 }
