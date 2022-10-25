@@ -24,19 +24,26 @@ exports.getDATA =(req,res)=>{
 }
 exports.testDelete =(req,res)=>{
     const list_path = (req.headers.userdatapath).split("\\",2)
-    const path = list_path[0]+"/"+list_path[1]
+    //const path = list_path[0]+"/"+list_path[1]
     const PT = list_path[1]+ String(req.headers.type)
     const realpath = String("./assets/" + PT)
     const ToPath = String(realpath)
     console.log({"realpath":ToPath})
+
+    var str = ""
+    for (let i in ToPath){
+        str = str + ToPath[i]
+    }
+    console.log(str)
     const fs = require('fs')   
+
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlink(ToPath,(err)=>{
+        await fs.unlink(str,(err)=>{
             if(err){
                 return res.json(err)
             }})
         return res.status(200).json("Delete complete")
-    }) 
+    })
 }
