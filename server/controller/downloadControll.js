@@ -9,7 +9,7 @@ exports.getDATA =(req,res)=>{
     //console.log(split[0])
     //console.log(split[1])
     //console.log(split[2])
-    
+
     switch(true){
         case String(type) == ("File folder") :
             const file_path_ff = String(path) + ".zip"
@@ -24,23 +24,21 @@ exports.getDATA =(req,res)=>{
 }
 exports.testDelete =(req,res)=>{
     const list_path = (req.headers.userdatapath).split("\\",2)
-    //const path = list_path[0]+"/"+list_path[1]
+    const path = list_path[0]+"/"+list_path[1]
     const PT = list_path[1]+ String(req.headers.type)
     const realpath = String("./assets/" + PT)
-    const ToPath = String(realpath)
-    console.log({"realpath":ToPath})
+    console.log({"headers":req.headers})
+    console.log({"path":req.headers.userdatapath})
+    console.log({"type":req.headers.type})
+    console.log({PT})
+    console.log({"str":`./assets/${PT}`})
 
-    var str = ""
-    for (let i in ToPath){
-        str = str + ToPath[i]
-    }
-    console.log(str)
     const fs = require('fs')   
 
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlink(str,(err)=>{
+        await fs.unlink(`./assets/${PT}`,(err)=>{
             if(err){
                 return res.json(err)
             }})
