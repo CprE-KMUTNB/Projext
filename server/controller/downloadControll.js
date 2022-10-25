@@ -26,7 +26,8 @@ exports.testDelete =(req,res)=>{
     const list_path = (req.headers.userdatapath).split("\\",2)
     const path = list_path[0]+"/"+list_path[1]
     const type = req.headers.type;
-    const realpath = "./" + path + type
+    const realpath = "./" + path + '.' + type.slice(1)
+    console.log(type.slice(1))
     const fs = require('fs')
     console.log({realpath})
     space

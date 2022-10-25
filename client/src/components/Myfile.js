@@ -81,6 +81,7 @@ function Myfile() {
 
   const handleDelete = (path,type) => {
     //console.log({"userdatapath":path,"type":type})
+    console.log({"UserDataPath":path,"Type":type})
     Swal.fire({
       title: 'Do you want to delete?',
       showCancelButton: true,

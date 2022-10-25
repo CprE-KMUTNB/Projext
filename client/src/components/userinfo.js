@@ -97,10 +97,6 @@ function UserInfo() {
                                 </button>
                             </div>)}
                     </div>
-                    <button>
-                        <Link to='/share/test1'>SharePage</Link>
-                    </button>
-
                 </div>  
             </div>
         </>
