@@ -25,13 +25,10 @@ exports.getDATA =(req,res)=>{
 exports.testDelete =(req,res)=>{
     const path = req.headers.userdatapath
     const type = req.headers.type
-    //const full_path = "./".concat(path.split("\\")[0].concat("/").concat(path.split("\\")[1]).concat(type))
-    //const full_path = ("./" + path.split("\\")[0] + "/" + path.split("\\")[1]).concat(type)
-    //const full_path = "./".concat(path.concat(type))
-    const full_path = path.concat(type)
-    console.log({"path":path})
-    console.log({"type":type})
-    console.log({"full_path":full_path})
+    const full_path = './'+ path.concat(type)
+    //console.log({"path":path})
+    //console.log({"type":type})
+    //console.log({"full_path":full_path})
 
     const fs = require('fs')   
     
