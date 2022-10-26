@@ -60,9 +60,11 @@ exports.getSingleShare = (req,res) => {
     const Type = req.headers.filetype
     const Slug = req.headers.slugg
     const ID = req.headers.nowid
+    //console.log({owner,FilePath,Slug})
 
-    single_share_space.findOne({owner:owner,FilePath:FilePath,Slug:Slug})
+    single_share_space.findOne({owner:owner,Slug:Slug})
     .then(resp=>{
+        //console.log({'resp':resp})
         if(resp.ShareTo==''){
             return res.status(200).json(resp)
         }

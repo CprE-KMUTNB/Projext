@@ -21,24 +21,6 @@ function SharePage() {
 
   const[datas,setdatas] = useState([])
   
-  const sweet_input =()=>{
-    Swal.fire({
-      title: 'Share To',
-      html: `<input type="text" id="login" class="swal2-input" placeholder="share to">`,
-      confirmButtonText: 'confirm',
-      showCancelButton: true,
-      focusConfirm: false,
-      preConfirm: () => {
-        const to = Swal.getPopup().querySelector('#login').value
-        return { shareto: to}
-      }
-    }).then((result) => {
-      Swal.fire(`
-        share to : ${result.value.shareto}
-      `.trim())
-    })
-  }
-
   const fetchData =()=>{
     axios
     .get(String(process.env.REACT_APP_API)+'/singleshare',
@@ -142,9 +124,6 @@ function SharePage() {
           )}
           <button onClick={()=>handleDownload(datas.FileName,datas.FilePath,datas.Type)}>
             <label>Download Here!</label>
-          </button>
-          <button onClick={()=>sweet_input()}>
-            <label>check Here!</label>
           </button>
         </div>
       </div> 

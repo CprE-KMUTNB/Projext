@@ -147,7 +147,16 @@ function Myfile() {
       for ( var i = 0; i < length; i++ ) {
           result += characters.charAt(Math.floor(Math.random() * charactersLength));
       }
-      const slink = 'http://localhost:3000/share/'+result+NAME+';'+path.split('\\')[0]+path.split('\\')[1]+'<<!'+type+'>!'+ getNAME();
+      //const slink = 'http://20.247.97.59:3000/share/'+result+NAME+';'+path.split('\\')[0]+path.split('\\')[1]+'<<!'+type+'>!'+ getNAME();
+      const p1 = path.slice(0,6)
+      const p2 = path.slice(7)
+      const name = getNAME()
+      console.log({p1,p2})
+      const slink = 'http://20.247.97.59:3000/share/'+result+NAME+';'+p1+(p2+('<<!'.concat(type)))+'>!'+name
+      console.log({path})
+      console.log({type})
+      console.log({'p2+':p2+('<<!'.concat(type))})
+      console.log(slink)
       axios
       .get(String(process.env.REACT_APP_API)+'/singlesharecreate',
       {headers:{"owner":getNAME(),
