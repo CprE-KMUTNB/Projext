@@ -23,22 +23,22 @@ exports.getDATA =(req,res)=>{
     }
 }
 exports.testDelete =(req,res)=>{
-    const list_path = (req.headers.userdatapath).split("\\",2)
-    const path = list_path[0]+"/"+list_path[1]
-    const PT = list_path[1]+ String(req.headers.type)
-    const realpath = String("./assets/" + PT)
-    console.log({"headers":req.headers})
-    console.log({"path":req.headers.userdatapath})
-    console.log({"type":req.headers.type})
-    console.log({PT})
-    console.log({"str":`./assets/${PT}`})
+    const path = req.headers.userdatapath
+    const type = req.headers.type
+    //const full_path = "./".concat(path.split("\\")[0].concat("/").concat(path.split("\\")[1]).concat(type))
+    //const full_path = ("./" + path.split("\\")[0] + "/" + path.split("\\")[1]).concat(type)
+    //const full_path = "./".concat(path.concat(type))
+    const full_path = path.concat(type)
+    console.log({"path":path})
+    console.log({"type":type})
+    console.log({"full_path":full_path})
 
     const fs = require('fs')   
-
+    
     space
     .findOneAndDelete({UserDataPath:req.headers.userdatapath})
     .then(async(resp) =>{
-        await fs.unlink(`./assets/${PT}`,(err)=>{
+        await fs.unlink(full_path,(err)=>{
             if(err){
                 return res.json(err)
             }})
