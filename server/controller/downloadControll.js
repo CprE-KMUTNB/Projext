@@ -1,14 +1,15 @@
 const space = require("../model/space")
+const utf8 = require("utf8");
 exports.getDATA =(req,res)=>{
     const auth = req.headers.authorization;
-    //console.log({"headers":auth})
+    console.log({"headers":auth})
     const split = auth.split(",")
     const name = split[0]
     const path = "./"+split[1]
     const type = split[2]
-    //console.log(split[0])
-    //console.log(split[1])
-    //console.log(split[2])
+    console.log(split[0])
+    console.log(split[1])
+    console.log(split[2])
 
     switch(true){
         case String(type) == ("File folder") :
@@ -25,15 +26,15 @@ exports.getDATA =(req,res)=>{
 exports.testDelete =(req,res)=>{
     const path = req.headers.userdatapath
     const type = req.headers.type
-    const full_path = './'+ path.concat(type)
-    //console.log({"path":path})
-    //console.log({"type":type})
-    //console.log({"full_path":full_path})
+    const full_path = './'+ utf8.decode(path).concat(utf8.decode(type))
+    //console.log({"path":utf8.decode(path)})
+    //console.log({"type":utf8.decode(type)})
+    console.log({"full_path_delete":full_path})
 
     const fs = require('fs')   
     
     space
-    .findOneAndDelete({UserDataPath:req.headers.userdatapath})
+    .findOneAndDelete({UserDataPath:utf8.decode(req.headers.userdatapath),Type:utf8.decode(req.headers.type)})
     .then(async(resp) =>{
         await fs.unlink(full_path,(err)=>{
             if(err){

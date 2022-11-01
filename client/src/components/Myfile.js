@@ -15,7 +15,7 @@ import Swal from "sweetalert2"
 import { IoIosShareAlt } from "react-icons/io";
 
 function Myfile() {
-
+  const utf8 = require('utf8');
   const refreshPage =()=>{
     window.location.reload();
   }
@@ -36,7 +36,7 @@ function Myfile() {
 
   const fetchData =(SE)=>{
     axios
-    .get(url,{headers:{"userid":getNAME(),"search":SE}})
+    .get(url,{headers:{"userid":getNAME(),"search":utf8.encode(SE)}})
     .then(resp=>{
       setdatas(resp.data) 
     })
@@ -81,7 +81,6 @@ function Myfile() {
 
   const handleDelete = (path,type) => {
     //console.log({"userdatapath":path,"type":type})
-    console.log({"UserDataPath":path,"Type":type})
     Swal.fire({
       title: 'Do you want to delete?',
       showCancelButton: true,
@@ -94,7 +93,7 @@ function Myfile() {
     }).then(async(result) => {
       if (result.isConfirmed){
         axios
-        .delete(String(process.env.REACT_APP_API)+'/testdelete',{headers:{"UserDataPath":path,"Type":type}})
+        .delete(String(process.env.REACT_APP_API)+'/testdelete',{headers:{"UserDataPath":utf8.encode(path),"Type":utf8.encode(type)}})
         .then(resp => {
           console.log(resp.data)
         })
@@ -151,12 +150,12 @@ function Myfile() {
       const p1 = path.slice(0,6)
       const p2 = path.slice(7)
       const name = getNAME()
-      console.log({p1,p2})
+      //console.log({p1,p2})
       const slink = 'http://20.247.97.59:3000/share/'+result+NAME+';'+p1+(p2+('<<!'.concat(type)))+'>!'+name
-      console.log({path})
-      console.log({type})
-      console.log({'p2+':p2+('<<!'.concat(type))})
-      console.log(slink)
+      //console.log({path})
+      //console.log({type})
+      //console.log({'p2+':p2+('<<!'.concat(type))})
+      //console.log(slink)
       axios
       .get(String(process.env.REACT_APP_API)+'/singlesharecreate',
       {headers:{"owner":getNAME(),

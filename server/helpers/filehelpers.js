@@ -1,12 +1,12 @@
 'use strict';
 const multer = require('multer');
-
+const utf8 = require('utf8');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'assets');
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
+        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + utf8.decode(file.originalname));
     }
 });
 /*const filefilter = (req, file, cb) => {

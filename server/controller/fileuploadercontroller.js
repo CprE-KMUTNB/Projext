@@ -1,6 +1,7 @@
 'use strict';
 const SingleFile = require('../model/singlefile');
 const MultipleFile = require('../model/multiplefile');
+const utf8 = require('utf8');
 
 const singleFileUpload = async (req, res, next) => {
     
@@ -10,7 +11,7 @@ const singleFileUpload = async (req, res, next) => {
         //console.log(p)
         const file = new SingleFile({
             ID:req.headers.authorization,
-            UserDataName: req.file.originalname.split('.')[0],
+            UserDataName: utf8.decode(req.file.originalname.split('.')[0]),
             UserDataPath: p[0]+"."+p[1] ,
             Type:"."+type.pop()
         });

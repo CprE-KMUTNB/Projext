@@ -5,6 +5,7 @@ const tests = require("../model/tests")
 const DATA = require("../model/tests")
 const userDATA = require("../model/tests")
 const space = require("../model/space")
+const utf8 = require("utf8");
 //สร้างข้อมูล
 exports.create=(req,res)=>{
     const {ID,PASSWORD,CONFIRM_PASSWORD,NAME} = req.body
@@ -37,7 +38,7 @@ exports.create=(req,res)=>{
 exports.getAlldata = (req,res) => {
     //console.log(req.headers)
     const ID = req.headers.userid;
-    const search = req.headers.search; 
+    const search = utf8.decode(req.headers.search); 
     //console.log({user:search})
     if(search[0] == "."){
         space.find({ID:ID,Type:{$regex:search}})
