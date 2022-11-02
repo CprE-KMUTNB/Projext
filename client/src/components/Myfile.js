@@ -79,10 +79,11 @@ function Myfile() {
     timerProgressBar: true
   })
 
-  const handleDelete = (path,type) => {
+  const handleDelete = (path,type,name) => {
     //console.log({"userdatapath":path,"type":type})
     Swal.fire({
       title: 'Do you want to delete?',
+      text: name.concat(type) ,
       showCancelButton: true,
       confirmButtonText: 'Yes',
       customClass: {
@@ -253,7 +254,7 @@ function Myfile() {
                   <div className='button_delete'>
                     {datas.map((datas,index)=>(
                       <div className='row_buttonD' key={index}>
-                        <button onClick={()=>handleDelete(datas.UserDataPath,datas.Type)}>
+                        <button onClick={()=>handleDelete(datas.UserDataPath,datas.Type,datas.UserDataName)}>
                           <div className='delete_icon'>
                             <MdDelete/>
                           </div>

@@ -82,10 +82,20 @@ exports.createspace=(req,res)=>{
 exports.editname=(req,res)=>{
     const ID = req.body.ID
     const Edit = req.body.edit
-    DATA.findOneAndUpdate({ID:ID},{$set:{NAME:req.body.edit}})
-    .then(resp=>{
-        return res.json(resp)
+    console.log({ID,Edit})
+
+    switch(true){
+        case Edit == "" || !Edit :
+            return res.json("please enter your new name!")
+    }
+
+    DATA.findOneAndUpdate({ID:ID},{$set:{NAME:Edit}},(err,data)=>{
+        if(err){
+            return res.status(400).json(err)
+        }
+        else{
+            return res.json("Edit Success.")
+        }
     })
-    
 }
 

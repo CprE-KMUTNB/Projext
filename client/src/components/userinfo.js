@@ -38,7 +38,7 @@ function UserInfo() {
     const {edit} = state
 
     const inputValue=name=>event=>{
-        console.log(name,"=",event.target.value)
+        //console.log(name,"=",event.target.value)
         setState({...state,[name]:event.target.value})
     }
 
@@ -49,14 +49,23 @@ function UserInfo() {
         .put(String(process.env.REACT_APP_API)+'/editname',{ID,edit})
         //edit complete
         .then(response=>{
-            console.log(response)
-            Swal.fire(
-                'Complete',
-                'Edit Success.',
-                'success')
-            setState({...state,edit:""})
-            hanclickedit()
-            getDATA()
+            //console.log(response)
+            if (response.data == 'please enter your new name!'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: response.data,
+                })
+            }
+            else{
+                Swal.fire(
+                    'Complete',
+                    response.data,
+                    'success')
+                setState({...state,edit:""})
+                hanclickedit()
+                getDATA()
+            }
         })
         .catch(err=>{ Swal.fire({
             icon: 'error',
