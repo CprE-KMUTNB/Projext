@@ -1,7 +1,7 @@
 const space = require("../model/space")
 const utf8 = require("utf8");
 exports.getDATA =(req,res)=>{
-    const auth = req.headers.authorization;
+    const auth = utf8.decode(req.headers.authorization);
     console.log({"headers":auth})
     const split = auth.split(",")
     const name = split[0]

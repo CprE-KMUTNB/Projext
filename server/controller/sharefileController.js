@@ -1,12 +1,13 @@
 const userDATA = require("../model/tests")
 const space = require("../model/space")
 const single_share_space = require("../model/sharesinglefile")
+const utf8 = require("utf8");
 
 exports.checkshare=(req,res)=>{
     const owner = req.headers.owner
     const FilePath = req.headers.filepath
 
-    single_share_space.findOne({owner:owner,FilePath:FilePath})
+    single_share_space.findOne({owner:utf8.decode(owner),FilePath:utf8.decode(FilePath)})
     .then(resp=>{
         if(!resp){
             return res.json("NO_DATA")

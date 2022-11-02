@@ -47,7 +47,7 @@ function Myfile() {
   },[])
 
   const downloadClick =(NAME,path,type)=>{
-    //console.log({NAME,path,type})
+    console.log({NAME,path,type})
     if (type === "File folder"){
       type = ".zip"
     }
@@ -57,12 +57,12 @@ function Myfile() {
   const handleDownload = (NAME,path,type) => {
     axios
     .get(String(process.env.REACT_APP_API)+'/testdownload',
-    {headers:{authorization:[NAME,path,type]},
+    {headers:{authorization:[utf8.encode(NAME),utf8.encode(path),utf8.encode(type)]},
     responseType: 'blob'})
     .then((res) => {
-      //console.log({res_data:res.data})
+      console.log({res_data:res.data})
       const fileName = NAME + type
-      //console.log(res.data)
+      console.log(res.data)
       fileDownload(res.data,fileName)
     })
   }
@@ -110,7 +110,7 @@ function Myfile() {
       axios
       .get(String(process.env.REACT_APP_API)+'/checkshare',
       {headers:{"owner":getNAME(),
-                "filepath":path}})
+                "filepath": utf8.encode(path)}})
       .then(resp=>{
         if(resp.data=='NO_DATA'){
           Swal.fire({
@@ -127,7 +127,7 @@ function Myfile() {
             await Swal.fire(`
               share to : ${result.value.shareto}
             `.trim())
-            makeid(length,NAME,path,type,result.value.shareto)
+            makeid(length,utf8.encode(NAME),utf8.encode(path),type,result.value.shareto)
           })
         }
         else{

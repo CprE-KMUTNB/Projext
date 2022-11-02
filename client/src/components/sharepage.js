@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 function SharePage() {
 
+  const utf8 = require("utf8");
   const navigate = useNavigate();
   
   const slug = useParams();
@@ -61,7 +62,7 @@ function SharePage() {
       //console.log({res_data:res.data})
       const fileName = NAME + type
       //console.log(res.data)
-      fileDownload(res.data,fileName)
+      fileDownload(res.data,utf8.decode(fileName))
     })
   }
   const filetype = String(slug.slug.slice(35).split(';')[1].slice(6).split('<<!')[1].split('>!')[0])
